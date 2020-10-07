@@ -31,8 +31,9 @@ pipeline {
                     'b:YXJpOmNsb3VkOmdyYXBoOjpzZXJ2aWNlLzA4MjY0MTE2LWQ1MzEtMTFlYS1iYWVhLTEyOGI0MjgxOTQyNC9jZWU1NThlYS0wODQ1LTExZWItYWNhMC0wYTc3ZjNmNDUzMDQ='
                   ]
                 )
+          }
         }
-        state("Check gate") {
+        stage("Check gate") {
           steps {
             waitUntil {
               input message: "Check for approval?"
