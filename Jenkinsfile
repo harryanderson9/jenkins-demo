@@ -24,7 +24,7 @@ pipeline {
                   environmentId: 'us-prod-1', 
                   environmentName: 'us-prod-1', 
                   environmentType: 'production', 
-                  state: "pending",
+                  state: "in-progress",
                   // enableGate: true,
                   serviceIds: [
                     'b:YXJpOmNsb3VkOmdyYXBoOjpzZXJ2aWNlLzA4MjY0MTE2LWQ1MzEtMTFlYS1iYWVhLTEyOGI0MjgxOTQyNC85NzYyMzcyYS0wODNjLTExZWItYjJjMC0wYTc3ZjNmNDUzMDQ=', 
