@@ -8,24 +8,24 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'echo building...'
+                sh 'echo Run tests...'
             }
         }
         stage('Staging') {
             steps {
-                sh 'echo staging'
+                sh 'echo Deploy to Staging...'
             }
         }
-        stage('Request change approval') {
+        stage('Change Gate') {
           steps {
-                sh 'echo requesting change approval'
+                sh 'echo Requesting approval from Jira to proceed...'
                 jiraSendDeploymentInfo (
                   site: 'jsd-coin.atlassian.net', 
                   environmentId: 'us-prod-1', 
                   environmentName: 'us-prod-1', 
                   environmentType: 'production', 
                   state: "in_progress",
-                  // enableGate: true,
+                  enableGate: true,
                   serviceIds: [
                     'b:YXJpOmNsb3VkOmdyYXBoOjpzZXJ2aWNlLzA4MjY0MTE2LWQ1MzEtMTFlYS1iYWVhLTEyOGI0MjgxOTQyNC85NzYyMzcyYS0wODNjLTExZWItYjJjMC0wYTc3ZjNmNDUzMDQ=', 
                     'b:YXJpOmNsb3VkOmdyYXBoOjpzZXJ2aWNlLzA4MjY0MTE2LWQ1MzEtMTFlYS1iYWVhLTEyOGI0MjgxOTQyNC9jZWU1NThlYS0wODQ1LTExZWItYWNhMC0wYTc3ZjNmNDUzMDQ='
@@ -37,13 +37,13 @@ pipeline {
           steps {
             waitUntil {
               input message: "Check for approval?"
-              checkGateStatus(site:'dhurin.jira-dev.com', environmentId:'us-tst-1')
+              checkGateStatus(site:'jsd-coin.atlassian.net', environmentId:'us-prod-1')
             }
           }
         }
         stage('Production') {
             steps {
-                sh 'echo start production deploy'
+                sh 'echo Deploy to production'
                 jiraSendDeploymentInfo (
                   site: 'jsd-coin.atlassian.net', 
                   environmentId: 'us-prod-1', 
