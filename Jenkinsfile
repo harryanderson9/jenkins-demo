@@ -16,42 +16,41 @@ pipeline {
         sh 'echo Deploy to Staging...'
       }
         }
-        // stage('Generate change request') {
-        //   steps {
-        //         sh 'echo Creating change request'
-        //         jiraSendDeploymentInfo (
-        //           site: 'jsd-coin.atlassian.net',
-        //           environmentId: 'us-prod-1',
-        //           environmentName: 'us-prod-1',
-        //           environmentType: 'production',
-        //           state: "in_progress",
-        //           enableGate: true,
-        //           serviceIds: ['<YOUR_SERVICE_ID>']
-        //         )
-        //   }
-        // }
-        // stage("Check gate") {
-        //   steps {
-        //     waitUntil {
-        //       input message: "Check for approval now?"
-        //       checkGateStatus(
-        //         site:'jsd-coin.atlassian.net',
-        //         environmentId:'us-prod-1'
-        //       )
-        //     }
-        //   }
-        // }
-        stage('Production') {
-      steps {
-        sh 'echo Deploy to production...'
+        stage('Generate GATED change request') {
+          steps {
+        sh 'echo Creating change request'
         jiraSendDeploymentInfo (
                   site: 'jsd-coin.atlassian.net',
                   environmentId: 'us-prod-1',
                   environmentName: 'us-prod-1',
                   environmentType: 'production',
                   state: 'in_progress',
-                  serviceIds: ['b:YXJpOmNsb3VkOmdyYXBoOjpzZXJ2aWNlLzA4MjY0MTE2LWQ1MzEtMTFlYS1iYWVhLTEyOGI0MjgxOTQyNC85NzYyMzcyYS0wODNjLTExZWItYjJjMC0wYTc3ZjNmNDUzMDQ=',
-                    'b:YXJpOmNsb3VkOmdyYXBoOjpzZXJ2aWNlLzA4MjY0MTE2LWQ1MzEtMTFlYS1iYWVhLTEyOGI0MjgxOTQyNC9jZWU1NThlYS0wODQ1LTExZWItYWNhMC0wYTc3ZjNmNDUzMDQ=']
+                  enableGate: true,
+                  serviceIds: ['<YOUR_SERVICE_ID>']
+                )
+          }
+        }
+        stage('Check gate') {
+          steps {
+            waitUntil {
+              input message: 'Check for approval now?'
+              checkGateStatus(
+                site:'jsd-coin.atlassian.net',
+                environmentId:'us-prod-1'
+              )
+            }
+          }
+        }
+        stage('Production') {
+      steps {
+        sh 'echo Deploy to production...'
+        jiraSendDeploymentInfo (
+                  site: '<YOUR_SITE>.atlassian.net',
+                  environmentId: 'us-prod-1',
+                  environmentName: 'us-prod-1',
+                  environmentType: 'production',
+                  state: 'in_progress',
+                  serviceIds: ['<YOUR_SERVICE_ID>']
                 )
       }
       post {
@@ -60,35 +59,32 @@ pipeline {
         }
         success {
           jiraSendDeploymentInfo (
-                  site: 'jsd-coin.atlassian.net',
+                  site: '<YOUR_SITE>.atlassian.net',
                   environmentId: 'us-prod-1',
                   environmentName: 'us-prod-1',
                   environmentType: 'production',
                   state: 'successful',
-                  serviceIds: ['b:YXJpOmNsb3VkOmdyYXBoOjpzZXJ2aWNlLzA4MjY0MTE2LWQ1MzEtMTFlYS1iYWVhLTEyOGI0MjgxOTQyNC85NzYyMzcyYS0wODNjLTExZWItYjJjMC0wYTc3ZjNmNDUzMDQ=',
-                    'b:YXJpOmNsb3VkOmdyYXBoOjpzZXJ2aWNlLzA4MjY0MTE2LWQ1MzEtMTFlYS1iYWVhLTEyOGI0MjgxOTQyNC9jZWU1NThlYS0wODQ1LTExZWItYWNhMC0wYTc3ZjNmNDUzMDQ=']
+                  serviceIds: ['<YOUR_SERVICE_ID>']
                 )
         }
         failure {
           jiraSendDeploymentInfo (
-                  site: 'jsd-coin.atlassian.net',
+                  site: '<YOUR_SITE>.atlassian.net',
                   environmentId: 'us-prod-1',
                   environmentName: 'us-prod-1',
                   environmentType: 'production',
                   state: 'failed',
-                  serviceIds: ['b:YXJpOmNsb3VkOmdyYXBoOjpzZXJ2aWNlLzA4MjY0MTE2LWQ1MzEtMTFlYS1iYWVhLTEyOGI0MjgxOTQyNC85NzYyMzcyYS0wODNjLTExZWItYjJjMC0wYTc3ZjNmNDUzMDQ=',
-                    'b:YXJpOmNsb3VkOmdyYXBoOjpzZXJ2aWNlLzA4MjY0MTE2LWQ1MzEtMTFlYS1iYWVhLTEyOGI0MjgxOTQyNC9jZWU1NThlYS0wODQ1LTExZWItYWNhMC0wYTc3ZjNmNDUzMDQ=']
+                  serviceIds: ['<YOUR_SERVICE_ID>']
                 )
         }
         aborted {
           jiraSendDeploymentInfo (
-                  site: 'jsd-coin.atlassian.net',
+                  site: '<YOUR_SITE>.atlassian.net',
                   environmentId: 'us-prod-1',
                   environmentName: 'us-prod-1',
                   environmentType: 'production',
-                  state: 'canceled',
-                  serviceIds: ['b:YXJpOmNsb3VkOmdyYXBoOjpzZXJ2aWNlLzA4MjY0MTE2LWQ1MzEtMTFlYS1iYWVhLTEyOGI0MjgxOTQyNC85NzYyMzcyYS0wODNjLTExZWItYjJjMC0wYTc3ZjNmNDUzMDQ=',
-                    'b:YXJpOmNsb3VkOmdyYXBoOjpzZXJ2aWNlLzA4MjY0MTE2LWQ1MzEtMTFlYS1iYWVhLTEyOGI0MjgxOTQyNC9jZWU1NThlYS0wODQ1LTExZWItYWNhMC0wYTc3ZjNmNDUzMDQ=']
+                  state: 'cancelled',
+                  serviceIds: ['<YOUR_SERVICE_ID>']
                 )
         }
       }
