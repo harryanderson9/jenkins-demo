@@ -55,6 +55,7 @@ pipeline {
       }
       post {
         always {
+          sh 'sleep 2'
           sh 'echo finished'
         }
         success {
