@@ -16,7 +16,6 @@ pipeline {
         sh 'echo Deploy to Staging...'
       }
         }
-        // test
         // stage('Generate GATED change request') {
         //   steps {
         //         sh 'echo Creating change request'
