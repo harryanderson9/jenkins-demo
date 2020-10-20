@@ -10,7 +10,7 @@ pipeline {
                         environmentName:'us-prod-1',
                         environmentType:'production',
                         // now we can define a state of build explicitly
-                        state:"in_progress",
+                        state:"pending",
                         enableGating:true,
                         serviceIds: [
                 "b:YXJpOmNsb3VkOmdyYXBoOjpzZXJ2aWNlLzA4MjY0MTE2LWQ1MzEtMTFlYS1iYWVhLTEyOGI0MjgxOTQyNC8zNTQ0N2Q4Yy0xMzE4LTExZWItOTNhZi0wYTc3ZjNmNDUzMDQ="]
