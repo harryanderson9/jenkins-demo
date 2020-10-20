@@ -6,9 +6,9 @@ pipeline {
             steps {
                 echo 'Queueing...'
                 jiraSendDeploymentInfo(site:'jsd-coin.atlassian.net',
-                        environmentId:'us-tst-1',
-                        environmentName:'us-tst-1',
-                        environmentType:'testing',
+                        environmentId:'us-prod-1',
+                        environmentName:'us-prod-1',
+                        environmentType:'production',
                         // now we can define a state of build explicitly
                         state:"pending",
                         enableGating:true,
