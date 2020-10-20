@@ -20,8 +20,8 @@ pipeline {
         stage("check gate") {
             steps {
                 waitUntil {
-                    input message: "Check for approval?"
-                    checkGatingStatus(site:'jsd-coin.atlassian.net', environmentId:'us-prod-1')
+                sleep 10
+                checkGatingStatus(site:'jsd-coin.atlassian.net', environmentId:'us-prod-1')
                 }
             }
         }
