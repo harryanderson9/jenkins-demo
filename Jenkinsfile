@@ -24,6 +24,7 @@ pipeline {
                   environmentName: 'us-prod-1',
                   environmentType: 'production',
                   state: 'in_progress',
+                  serviceIds: ['b:YXJpOmNsb3VkOmdyYXBoOjpzZXJ2aWNlLzA4MjY0MTE2LWQ1MzEtMTFlYS1iYWVhLTEyOGI0MjgxOTQyNC8wNGM2MWU1Ni0xMjhhLTExZWItOTAxMy0wYTc3ZjNmNDUzMDQ=']
                 )
             sh 'echo Deploy to production...'
           }
@@ -39,6 +40,7 @@ pipeline {
                         environmentName: 'us-prod-1',
                         environmentType: 'production',
                         state: 'successful',
+                        serviceIds: ['b:YXJpOmNsb3VkOmdyYXBoOjpzZXJ2aWNlLzA4MjY0MTE2LWQ1MzEtMTFlYS1iYWVhLTEyOGI0MjgxOTQyNC8wNGM2MWU1Ni0xMjhhLTExZWItOTAxMy0wYTc3ZjNmNDUzMDQ=']
                       )
               }
               failure {
@@ -48,6 +50,7 @@ pipeline {
                         environmentName: 'us-prod-1',
                         environmentType: 'production',
                         state: 'failed',
+                        serviceIds: ['b:YXJpOmNsb3VkOmdyYXBoOjpzZXJ2aWNlLzA4MjY0MTE2LWQ1MzEtMTFlYS1iYWVhLTEyOGI0MjgxOTQyNC8wNGM2MWU1Ni0xMjhhLTExZWItOTAxMy0wYTc3ZjNmNDUzMDQ=']
                       )
               }
               aborted {
@@ -57,6 +60,7 @@ pipeline {
                         environmentName: 'us-prod-1',
                         environmentType: 'production',
                         state: 'cancelled',
+                        serviceIds: ['b:YXJpOmNsb3VkOmdyYXBoOjpzZXJ2aWNlLzA4MjY0MTE2LWQ1MzEtMTFlYS1iYWVhLTEyOGI0MjgxOTQyNC8wNGM2MWU1Ni0xMjhhLTExZWItOTAxMy0wYTc3ZjNmNDUzMDQ=']
                       )
               }
             }
