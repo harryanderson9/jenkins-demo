@@ -13,7 +13,7 @@ pipeline {
                         state:"pending",
                         enableGating:true,
                         serviceIds: [
-                "b:YXJpOmNsb3VkOmdyYXBoOjpzZXJ2aWNlLzA4MjY0MTE2LWQ1MzEtMTFlYS1iYWVhLTEyOGI0MjgxOTQyNC8wZmI5Mjc4ZS0xMjZlLTExZWItYWEzNS0wYTc3ZjNmNDUzMDQ="]
+                "b:YXJpOmNsb3VkOmdyYXBoOjpzZXJ2aWNlLzA4MjY0MTE2LWQ1MzEtMTFlYS1iYWVhLTEyOGI0MjgxOTQyNC8zNTQ0N2Q4Yy0xMzE4LTExZWItOTNhZi0wYTc3ZjNmNDUzMDQ="]
                     )
             }
         }
@@ -21,7 +21,7 @@ pipeline {
             steps {
                 waitUntil {
                     input message: "Check for approval?"
-                    checkGatingStatus(site:'jsd-coin.atlassian.net', environmentId:'us-tst-1')
+                    checkGatingStatus(site:'jsd-coin.atlassian.net', environmentId:'us-prod-1')
                 }
             }
         }
