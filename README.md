@@ -9,3 +9,5 @@ add issuew keys to commits!
 
 ## Some sample changes below
 CE-1 Update readme
+
+CE-2 Reduce logging volume
