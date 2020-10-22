@@ -11,3 +11,6 @@ add issuew keys to commits!
 CE-1 Update readme
 
 CE-2 Reduce logging volume
+
+
+CE-3 Upgrade billing service dependencies 
